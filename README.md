@@ -55,7 +55,7 @@ This repository is divided into the following parts.
 ```shell
 $ mkdir java-persistence
 $ cd java-persistence
-$ git clone https://github.com/DiBarrera/java-persistencia
+$ git clone https://github.com/DiBarrera/java-persistencia.git
 ```
 
 You will find the following files:
