@@ -13,6 +13,7 @@
       <a href="#getting-started">Getting Started</a>
     </li>
     <li><a href="#Topics-reviewed">Topics reviewed</a></li>
+    <li><a href="#Basics">Basics</a></li>
     <li><a href="#Acquired-skills">Acquired skills</a></li>
   </ol>
 </details>
@@ -82,6 +83,8 @@ You will find the following files:
 - Click on phpMyAdmin at the top right of the menu to open the phpMyAdmin manager or click on the next link: http://localhost/phpmyadmin
 - Now we can manage our MySQL database.
 
+---------
+
 ### Connection to MySQL from Java
 
 - In our IDE, where our project is, we locate the Source Package directory.
@@ -94,9 +97,13 @@ public class Main {
   
   }
 }
-``` 
-- Next, in our IDE, where our project is, we locate the dependency directory.
+```
+- ### Java connector.
+- Next, what we need is a connector that allows us to generate the connection with java and the MySQL database engine.
+- First, in our IDE, where our project is, we locate the dependency directory.
 - Right click -> Add dependency -> In the Query field, we write: mysql-connector-java -> select the latest version -> click on add.
+- You can see in the projects panel, inside our dependencies folder, ther's now the connectors installed.
+- <img src="/docs/java-persistence-connectors.png" alt="connector"/>
 - Then, in the Project section, we locate the Source packages directory -> expand it -> right click on New -> Java Class -> Name the class.
 - Inside the created file, type following lines of code:
 - #### Connecion.java
@@ -136,10 +143,6 @@ public class Main {
 
 
 
-
-
-
-
 <!-- Topics reviewed -->
 ## Topics reviewed
 
@@ -166,6 +169,11 @@ For a better understanding of the following topics, two projects were developed 
 - Save data to public API.
 - List saved data. 
 - Delete data from the API.
+
+
+
+<!-- Basics -->
+## Basics
 
 
 
