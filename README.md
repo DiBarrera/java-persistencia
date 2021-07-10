@@ -69,6 +69,11 @@ You will find the following files:
 
 ### Xampp is a package that contains various tools for creating web applications: an apache web server, the MySQL database, PHPMyAdmin, and PHP.
 
+---------
+
+## Here are some steps that were followed in the course, to achieve the connection with the database.
+These steps are written so that the reader can get an idea of how the application was created to achieve the main objectives of the course. Although the repository contains the completed application in its entirety.
+
 ### Installation of MySQL:
 
 - To install it, we go to the following link: https://www.apachefriends.org/es/download.html
@@ -106,25 +111,25 @@ public class Main {
 - <img src="/docs/java-persistence-connectors.png" alt="connector"/>
 - Then, in the Project section, we locate the Source packages directory -> expand it -> right click on New -> Java Class -> Name the class.
 - Inside the created file, type following lines of code:
-- #### Connecion.java
+- #### Conexion.java
 ```markdown
-public class Connection {
-  public Connection get_connection() {
-    Connection connection = null;
-    try {
-      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/app_name", "root", "");
-      if(connection != null) {
-        System.outprintln("Successful connection")
-      }
-    } catch(SQLException e) {
-        System.out.println(e);
+public class Conexion {
+    public Connection get_connection() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mensajes_app", "root", "");
+            if (connection != null) {
+                System.out.println("conexion exitosa");
+            }
+        } catch(SQLException e) {
+            System.out.println(e);
+        }
+        return connection;
     }
-    return connection;
-  }
 }
 ``` 
-- We go back to our Main.java file, and add the following lines isnde the Main class.
-- #### Main.java
+- We go back to our Main.java file, and add the following lines isnde the Inicio class.
+- #### Inicio.java
 ```markdown
 public class Main {
   public static void main(String[] args) {
@@ -138,8 +143,37 @@ public class Main {
 }
 ``` 
 - Be sure to have all the necesary imports.
-- Then we click on the "paly" green icon to run the program. We will be asked what is the Available Main Classes.
+- Before running the program, with our database manager, we turn on Apache, and MySQL.
+- Then we click on the "paly" green icon to run the program. We will be asked which is our main class to run the program, we choose our Inicio class as our main class to run the program.
 - Successful connection
+- <img src="/docs/java-persistence-connection.png" alt="connection"/>
+
+---------
+
+- ### CRUD, inserting data in our database.
+- To begin with, we´re going to create serveral files or classes.java to performe the connection with the database, first we´ll create a file that will be our Data Access Object.
+- We name it like MensajesDAO.java.
+- Then, we create a class that will be the intermediate between the main munu and the access file. We name it mensajesService.java
+- Finally we create the class that will have the basic structure to perform CRUD operations, we name it mensajes.java.
+- <img src="/docs/java-persistence-files.png" alt="files"/>
+---------
+- After creating the necessary lines in the files MensajesDAO and MensajesService for the flow and logic of the application, we will have the necessary to make our first insertion of data in the database.
+- For that, we run the program in the IDE, we recive the next output:
+- <img src="/docs/java-persistence-output1.png" alt="output 1"/>
+- Type 1 to write a message.
+- <img src="/docs/java-persistence-output2.png" alt="output 2"/>
+- We'll be asked to write the author's name.
+- <img src="/docs/java-persistence-output3.png" alt="output 3"/>
+- Type Enter to insert the data.
+- <img src="/docs/java-persistence-output4.png" alt="output 4"/>
+- We end the program process by typing the option 5.
+- <img src="/docs/java-persistence-output5.png" alt="output 5"/>
+- Now, we go to our phpmyadmin panel, we go to our database messages_app, we can see that the message has been sent to the database.
+
+---------
+---------
+---------
+
 
 
 
