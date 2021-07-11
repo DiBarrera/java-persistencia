@@ -302,6 +302,94 @@ public class mensajesService {
 - <img src="/docs/java-persistence-output13.png" alt="output 13"/>
 
 ---------
+
+### CRUD, editing data.
+
+- For data editing, the user will be asked for the id of the message to be edited, that id will be taken to MensajesDAO and MensajesDAO will "request" the database to edit the content of the message from the id entered.
+- For MensajesDAO.java, we create the method actualizarMensajeDB, and inside our class MensajeDAO we write the next code.
+- #### MensajesDAO.java
+```markdown
+public class MensajesDAO {
+    
+    public static void crearMensajeDB(Mensajes mensaje){
+        // Lines to create message
+    }
+    
+    public static void leerMensajesDB(){
+        // Lines to recover messages
+    }
+    
+    public static void borrarMensajeDB(int id_mensaje){
+        // Lines to delete message
+    }
+    
+    public static void actualizarMensajeDB(Mensajes mensaje){
+        Conexion db_connect = new Conexion();
+        
+        try(Connection conexion = db_connect.get_connection())  { 
+        PreparedStatement ps=null;
+        
+            try{ 
+                String query="UPDATE mensajes SET mensaje = ? WHERE id_mensaje = ?";
+                ps=conexion.prepareStatement(query);
+                ps.setString(1, mensaje.getMensaje());
+                ps.setInt(2, mensaje.getId_mensaje());
+                ps.executeUpdate();
+                System.out.println("mensaje se actualizó correctamente");
+            }catch(SQLException ex){ 
+                System.out.println(ex);
+                System.out.println("no se pudo actualizar el mensaje");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+}
+``` 
+- In mensajesService, inside our main class mensajeService, we create a class name editarMensaje, from there, we will call the method actualizarMensajeDB from MensajesDAO.
+- #### mensajesService.java.
+```markdown
+public class mensajesService {
+    public static void crearMensaje(){
+        // Lines to create a messages
+    }
+    
+    public static void listarMensajes(){
+        // Lines to list messages
+    }
+    
+    public static void borrarMensaje(){
+        // Lines to delete messages
+    }
+    
+    public static void editarMensaje(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("escribe tu nuevo mensaje");
+        String mensaje = sc.nextLine();
+        
+        System.out.println("indica el ID del mensaje a editar");
+        int id_mensaje= sc.nextInt();
+        Mensajes actualizacion = new Mensajes();
+        actualizacion.setId_mensaje(id_mensaje);
+        actualizacion.setMensaje(mensaje);
+        MensajesDAO.actualizarMensajeDB(actualizacion);
+    }
+}
+``` 
+- Before we start to delete messages, just to test, create a couple f random message as test subjects, in this case we have a message with spelling errors identified with the id 7.
+- <img src="/docs/java-persistence-output14.png" alt="output 14"/>
+- <img src="/docs/java-persistence-output15.png" alt="output 15"/>
+- Now we run the program, we'll recive the instructions that we already see in the deleting data section.
+- We type 4 to edit a message, we will be asked to edit the message.
+- <img src="/docs/java-persistence-output16.png" alt="output 16"/>
+- We edit the message correcting the typos, and tap enter, we will be asked to enter the id that will be affected by the message edition. type the id 7.
+- We will receive a response that the message has been edited successfully.
+- <img src="/docs/java-persistence-output17.png" alt="output 17"/>
+- Now we can check that the changes have taken place if we list the messages with option 2. Likewise in the database the changes will be reflected.
+- <img src="/docs/java-persistence-output18.png" alt="output 18"/>
+- <img src="/docs/java-persistence-output19.png" alt="output 19"/>
+
+---------
 ---------
 ---------
 
